@@ -92,6 +92,66 @@ app.post("/products", (req: Request, res: Response) => {
   res.status(201).send("Produto cadastrado com sucesso!")
 })
 
+// deleteUserById
+app.delete('/users/:id', (req: Request, res: Response) => {
+    
+    const idToDelete = req.params.id
+
+    const userIndex: number = users.findIndex((user) => {
+        return user.id === idToDelete
+    })
+
+    if (userIndex >= 0) {
+        users.splice(userIndex, 1)
+    }
+
+    res.status(200).send("Usuário removido com sucesso")
+})
+
+// deleteProductById
+app.delete('/products/:id', (req: Request, res: Response) => {
+    
+    const idToDelete = req.params.id
+
+    const productIndex: number = products.findIndex((product) => {
+        return product.id === idToDelete
+    })
+
+    if (productIndex >= 0) {
+        products.splice(productIndex, 1)
+    }
+
+    res.status(200).send("Produto removido com sucesso")
+})
+
+// editProductById
+app.put('/products/:id', (req: Request, res: Response) => {
+    
+    const idToEdit = req.params.id
+
+    const newId = req.body.id as string | undefined
+    const newName = req.body.name as string | undefined
+    const newPrice = req.body.price as number | undefined
+    const newDescription = req.body.description as string | undefined
+    const newImageUrl = req.body.imageUrl as string | undefined 
+
+    const product = products.find((product) => product.id === idToEdit)
+
+    if (product) {
+
+        product.id = newId || product.id
+        product.name = newName || product.name
+        // product.price = newPrice || product.price
+        product.description = newDescription || product.description
+        product.imageUrl = newImageUrl || product.imageUrl
+        
+        product.price = isNaN(Number(newPrice)) ? product.price : newPrice as number
+}
+
+res.status(200).send("Produto atualizado com sucesso")
+})
+
+
 
 // console.log("Teste Exercício 1");
 
