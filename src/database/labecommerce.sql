@@ -14,7 +14,7 @@ CREATE TABLE products (
     name TEXT NOT NULL,
     price REAL NOT NULL,
     description TEXT NOT NULL,
-    image_url TEXT NOT NULL
+    imageUrl TEXT NOT NULL
 );
 
 -- Deletar a tabela - deixei comentado para evitar de deletar. Caso precise deletar, basta descomentar os DROPs abaixo.
@@ -33,7 +33,7 @@ VALUES
     ('u002', 'Usuário 002', 'usuario002@email.com', 'senha002', CURRENT_TIMESTAMP),
     ('u003', 'Usuário 003', 'usuario003@email.com', 'senha003', CURRENT_TIMESTAMP);
 
-INSERT INTO products (id, name, price, description, image_url)
+INSERT INTO products (id, name, price, description, imageUrl)
 VALUES
     ('prod001', 'Mouse gamer', 100, 'Este é o Produto 001', 'colocar um link aqui'),
     ('prod002', 'Monitor gamer', 200, 'Este é o Produto 002', 'colocar um link aqui'),
@@ -60,7 +60,7 @@ VALUES
     ('u004', 'Usuário 004', 'usuario004@email.com', 'senha004', CURRENT_TIMESTAMP);
 
 -- createProduct
-INSERT INTO products (id, name, price, description, image_url)
+INSERT INTO products (id, name, price, description, imageUrl)
 VALUES
     ('prod004', 'Cooler para notebook', 90, 'Este é o Produto 004', 'colocar um link aqui');
 
@@ -80,6 +80,11 @@ SET
     description = 'O Produto 004 foi editado',
     image_url = 'continua sem link'
 WHERE id = 'prod004';
+
+UPDATE products 
+SET 
+    price = 400
+WHERE id = 'prod005';
 
 UPDATE users 
 SET 
@@ -106,6 +111,10 @@ VALUES
     ('purch002', 'u003', 300, CURRENT_TIMESTAMP),
     ('purch003', 'u004', 200, CURRENT_TIMESTAMP),
     ('purch004', 'u002', 90, CURRENT_TIMESTAMP);
+
+INSERT INTO purchases (id, buyer, total_price, created_at)
+VALUES
+    ('purch005', 'u005', 349.99, CURRENT_TIMESTAMP);
 
 SELECT * FROM purchases;
 
@@ -149,6 +158,13 @@ VALUES
     ('purch002', 'prod003', 4),
 	('purch003', 'prod002', 3),
     ('purch004', 'prod001', 5);
+
+INSERT INTO purchases_products (purchase_id, product_id, quantity)
+VALUES
+    ('purch005', 'prod005', 5);
+
+DELETE FROM purchases
+WHERE id = 'purch005'
 
 UPDATE purchases_products 
 SET 
