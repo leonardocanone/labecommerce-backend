@@ -162,17 +162,18 @@ app.get("/products", async (req: Request, res: Response) => {
 });
 
 // findProductsByName
-app.get("/products/search", (req: Request, res: Response) => {
-    const nameToFind = req.query.name as string;
+// app.get("/products/search", (req: Request, res: Response) => {
+//     const nameToFind = req.query.name as string;
 
-    const result: TProduct[] = products.filter((product) => {
-        return product.name.toLowerCase().includes(nameToFind.toLowerCase())
-    })
+//     const result: TProduct[] = products.filter((product) => {
+//         return product.name.toLowerCase().includes(nameToFind.toLowerCase())
+//     })
     
-    res.send(result)
-})
+//     res.send(result)
+// })
 
-// createNewUser
+
+// createNewUser(antigo)
 // app.post("/users", (req: Request, res: Response) => {
 // 	const id = req.body.id as string
 // 	const name = req.body.name as string
@@ -193,6 +194,7 @@ app.get("/products/search", (req: Request, res: Response) => {
 //   res.status(201).send("Usuário cadastrado com sucesso!")
 // })
 
+// createNewUser(final)
 app.post("/users", async (req: Request, res: Response) => {
 
     try {
@@ -488,7 +490,7 @@ app.delete('/users/:id', async (req: Request, res: Response) => {
             throw new Error("'id' do Usuário não encontrado. Nada foi removido.")
         }
 
-      res.status(200).send("Usuário removido com sucesso");
+      res.status(200).send("Usuário removido com sucesso.");
 
     } catch (error) {
       if (res.statusCode === 200) {
@@ -534,7 +536,7 @@ app.delete('/products/:id', async (req: Request, res: Response) => {
             throw new Error("'id' do Produto não encontrado. Nada foi removido.")
         }
 
-    res.status(200).send("Produto removido com sucesso")
+    res.status(200).send("Produto removido com sucesso.")
   
   } catch (error) {
     if (res.statusCode === 200) {
@@ -838,6 +840,7 @@ app.delete('/purchases/:id', async (req: Request, res: Response) => {
 }
 
 })
+
 
 
 // console.log("Teste Exercício 1");
