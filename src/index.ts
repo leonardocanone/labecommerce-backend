@@ -856,4 +856,3 @@ app.delete('/purchases/:id', async (req: Request, res: Response) => {
 // console.log(searchProductsByName(products, "gamer"));
 // console.log(searchProductsByName2("gamer"));
 
-
